@@ -74,10 +74,15 @@ def certVerify(algorithm, num_samples, bits = ''):
 
 
 algorithms = [
-	'secp','rsa','dilithium2','dilithium3','dilithium5', 'falcon512', 'falcon1024', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128s-simple', 'SPHINCS+-SHA2-192f-simple', 'SPHINCS+-SHA2-192s-simple', 'SPHINCS+-SHA2-256f-simple', 'SPHINCS+-SHA2-256s-simple', 'SPHINCS+-SHAKE-128f-simple', 'SPHINCS+-SHAKE-128s-simple', 'SPHINCS+-SHAKE-192f-simple', 'SPHINCS+-SHAKE-192s-simple', 'SPHINCS+-SHAKE-256f-simple', 'SPHINCS+-SHAKE-256s-simple'
+	'secp','rsa','dilithium2','dilithium3','dilithium5', 'falcon512', 'falcon1024', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128s-simple', 'SPHINCS+-SHA2-192f-simple'
 ]
+
+for i in range(len(algorithms)):
+	algorithms[i] = algorithms[i].replace('+', '').replace('-', '')
+
+
 algorithms_in_english = [
-	'ECDSA','RSA', 'Dilithium 2', 'Dilithium 3', 'Dilithium 5', 'Falcon 512', 'Falcon 1024', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128s-simple', 'SPHINCS+-SHA2-192f-simple', 'SPHINCS+-SHA2-192s-simple', 'SPHINCS+-SHA2-256f-simple', 'SPHINCS+-SHA2-256s-simple', 'SPHINCS+-SHAKE-128f-simple', 'SPHINCS+-SHAKE-128s-simple', 'SPHINCS+-SHAKE-192f-simple', 'SPHINCS+-SHAKE-192s-simple', 'SPHINCS+-SHAKE-256f-simple', 'SPHINCS+-SHAKE-256s-simple'
+	'ECDSA','RSA', 'Dilithium 2', 'Dilithium 3', 'Dilithium 5', 'Falcon 512', 'Falcon 1024', 'SPHINCS+-SHA2-128f-simple', 'SPHINCS+-SHA2-128s-simple', 'SPHINCS+-SHA2-192f-simple'
 ]
 
 #algorithms = [
@@ -108,6 +113,7 @@ def run(file):
 		if algorithm == 'rsa':
 			for bits in rsa_bits_array:
 				print(f'Starting {algorithm} {bits}...')
+
 				initCert(algorithm, bits)
 
 				t1 = time.time()
