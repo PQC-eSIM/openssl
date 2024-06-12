@@ -17,5 +17,10 @@ sudo ninja install
 
 #install openssl
 cd $OPENSSL_DIR
-./Configure no-shared linux-x86_64 -lm
-sudo make -j8
+# ./Configure no-shared linux-x86_64 -lm
+# ./Configure no-shared linux-aarch64 -lm
+ARCH=$(uname -m)
+./Configure no-shared linux-$ARCH -lm
+
+# Dynamically set the number of jobs to the number of processors
+sudo make -j$(nproc)
